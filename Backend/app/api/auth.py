@@ -47,7 +47,7 @@ def login(
         key="admin_session",
         value=token,
         httponly=True,
-        secure=False,       # Change to True when using HTTPS
+        secure=True,       # Change to True when using HTTPS
         samesite="lax",
         max_age=30 * 60,    # 30 minutes
         path="/",
