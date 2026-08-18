@@ -91,7 +91,6 @@ def upload_gallery_image(
 def public_gallery(db: Session = Depends(get_db)):
     return (
         db.query(Gallery)
-        .filter(Gallery.status == True)
         .order_by(Gallery.id.desc())
         .all()
     )
