@@ -12,11 +12,14 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 COPY --from=deps /app/node_modules ./node_modules
+
 COPY . .
 
-
 ARG RESEND_API_KEY
+ARG NEXT_PUBLIC_API_URL
+
 ENV RESEND_API_KEY=$RESEND_API_KEY
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 
 RUN npm run build
 
