@@ -30,7 +30,7 @@ export default function Gallery() {
       try {
         setLoading(true);
 
-        const res = await api.get("/api/gallery/");
+        const res = await api.get("/api/gallery/public");
 
         console.log("Gallery API response:", res.data);
 
