@@ -192,7 +192,7 @@ export default function PropertyDetailsPage() {
   // =====================================================
 
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-slate-50 pt-20">
 
       {/* =================================================
           HERO IMAGE
@@ -445,7 +445,7 @@ export default function PropertyDetailsPage() {
                 <div className="p-8">
 
                   <p className="text-sm font-medium uppercase tracking-wide text-slate-400">
-                    Starting Price / SQYD
+                    Starting Price Per SQYD
                   </p>
 
                   <h2 className="mt-2 break-words text-4xl font-extrabold tracking-tight text-amber-600">
