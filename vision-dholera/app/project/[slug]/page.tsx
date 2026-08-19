@@ -123,7 +123,7 @@ export default function PropertyDetailsPage() {
 
   if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-slate-50">
+      <main className="flex min-h-screen items-center justify-center bg-slate-50 pt-20">
 
         <div className="text-center">
 
