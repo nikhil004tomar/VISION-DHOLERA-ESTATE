@@ -11,54 +11,69 @@ import {
   FaInstagram,
   FaLinkedin,
   FaYoutube,
-} from 'react-icons/fa';
+} from "react-icons/fa";
 
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-slate-950 text-white">
 
-      {/* Background Ambient Glow: Subtle Warm Gold Tone */}
-      <div className="absolute top-0 left-0 h-72 w-72 rounded-full bg-amber-500/10 blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full bg-yellow-600/10 blur-3xl"></div>
+      {/* Subtle Ambient Glow */}
+      <div className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-amber-500/[0.07] blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-32 -right-24 h-96 w-96 rounded-full bg-yellow-600/[0.06] blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-6 py-20">
+      <div className="relative mx-auto max-w-7xl px-6 py-20 lg:px-8">
 
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        {/* Main Footer */}
+        <div className="grid gap-14 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
 
           {/* Company */}
-          <div>
+          <div className="lg:pr-6">
 
-            <h2 className="text-3xl font-bold">
+            <h2 className="text-3xl font-bold tracking-tight text-white">
               Vision Dholera
-              <span className="text-amber-400"> Estate </span>
+              <span className="ml-1 text-amber-400">
+                Estate
+              </span>
             </h2>
 
-            <p className="mt-5 leading-7 text-slate-400">
+            <div className="mt-4 h-[2px] w-14 rounded-full bg-amber-400/80" />
+
+            <p className="mt-6 max-w-sm text-[15px] leading-7 text-slate-400">
               Helping investors secure premium residential and commercial
               properties in Dholera Smart City with trust, transparency,
               and expert guidance.
             </p>
 
-
           </div>
+
 
           {/* Quick Links */}
           <div>
 
-            <h3 className="text-xl font-semibold text-white">
+            <h3 className="text-lg font-semibold tracking-wide text-white">
               Quick Links
             </h3>
 
-            <ul className="mt-6 space-y-3 text-slate-400">
+            <div className="mt-3 h-px w-10 bg-amber-400/70" />
+
+            <ul className="mt-7 space-y-4 text-[15px]">
 
               <li>
-                <Link href="#home" className="hover:text-amber-400 transition">
+                <Link
+                  href="#home"
+                  className="group flex items-center text-slate-400 transition-all duration-300 hover:translate-x-1 hover:text-amber-400"
+                >
+                  <span className="mr-2 h-px w-0 bg-amber-400 transition-all duration-300 group-hover:w-4" />
                   Home
                 </Link>
               </li>
 
               <li>
-                <Link href="#about" className="hover:text-amber-400 transition">
+                <Link
+                  href="#about"
+                  className="group flex items-center text-slate-400 transition-all duration-300 hover:translate-x-1 hover:text-amber-400"
+                >
+                  <span className="mr-2 h-px w-0 bg-amber-400 transition-all duration-300 group-hover:w-4" />
                   About
                 </Link>
               </li>
@@ -66,8 +81,9 @@ export default function Footer() {
               <li>
                 <Link
                   href="#benefits"
-                  className="hover:text-amber-400 transition"
+                  className="group flex items-center text-slate-400 transition-all duration-300 hover:translate-x-1 hover:text-amber-400"
                 >
+                  <span className="mr-2 h-px w-0 bg-amber-400 transition-all duration-300 group-hover:w-4" />
                   Why Invest
                 </Link>
               </li>
@@ -75,8 +91,9 @@ export default function Footer() {
               <li>
                 <Link
                   href="#contact"
-                  className="hover:text-amber-400 transition"
+                  className="group flex items-center text-slate-400 transition-all duration-300 hover:translate-x-1 hover:text-amber-400"
                 >
+                  <span className="mr-2 h-px w-0 bg-amber-400 transition-all duration-300 group-hover:w-4" />
                   Contact
                 </Link>
               </li>
@@ -85,89 +102,159 @@ export default function Footer() {
 
           </div>
 
+
           {/* Contact */}
           <div>
 
-            <h3 className="text-xl font-semibold text-white">
+            <h3 className="text-lg font-semibold tracking-wide text-white">
               Contact Info
             </h3>
 
-            <div className="mt-6 space-y-5">
+            <div className="mt-3 h-px w-10 bg-amber-400/70" />
 
-              <div className="flex gap-3">
-                <Phone className="text-amber-400" size={20} />
-                <span className="text-slate-400">
+            <div className="mt-7 space-y-6">
+
+              {/* Phone */}
+              <div className="group flex items-start gap-4">
+
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-amber-400/20 bg-amber-400/[0.06]">
+                  <Phone
+                    size={17}
+                    className="text-amber-400"
+                  />
+                </div>
+
+                <span className="pt-1 text-[14px] text-slate-400 transition-colors duration-300 group-hover:text-slate-300">
                   +91 97738 92312
                 </span>
+
               </div>
 
-              <div className="flex gap-3">
-                <Mail className="text-amber-400" size={20} />
-                <span className="text-slate-400 break-all">
+
+              {/* Email */}
+              <div className="group flex items-start gap-4">
+
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-amber-400/20 bg-amber-400/[0.06]">
+                  <Mail
+                    size={17}
+                    className="text-amber-400"
+                  />
+                </div>
+
+                <span className="break-all pt-1 text-[14px] text-slate-400 transition-colors duration-300 group-hover:text-slate-300">
                   visiondholeraestates@gmail.com
                 </span>
+
               </div>
 
-              <div className="flex gap-3">
-                <MapPin className="text-amber-400" size={20} />
-                <span className="text-slate-400">
-                  Vision Dholera Estate
-                  <br />
-                  Registered Office: 1120, Galaxy Daimond Plaza, Sector - 4, Haibatpur, Greater Noida (W), U.P. 201016
 
-                  Branch Office: 810, 8th Floor, 31FIVE Corporate Rd, Prahlad Nagar, Ahmedabad, Gujarat 380015
+              {/* Address */}
+              <div className="group flex items-start gap-4">
 
-                  Branch Office: Krishna Market, Gupta Store Road In Front of Laxmi Atta Chakki, Subhashnagar, Clement Town, Dehradun (Uttarakhand) 248002
-                </span>
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-amber-400/20 bg-amber-400/[0.06]">
+                  <MapPin
+                    size={17}
+                    className="text-amber-400"
+                  />
+                </div>
+
+                <div className="text-[13px] leading-6 text-slate-400">
+
+                  <p className="font-medium text-slate-300">
+                    Vision Dholera Estate
+                  </p>
+
+                  <p className="mt-2">
+                    <span className="font-medium text-slate-300">
+                      Registered Office:
+                    </span>{" "}
+                    1120, Galaxy Daimond Plaza, Sector - 4,
+                    Haibatpur, Greater Noida (W), U.P. 201016
+                  </p>
+
+                  <p className="mt-3">
+                    <span className="font-medium text-slate-300">
+                      Branch Office:
+                    </span>{" "}
+                    810, 8th Floor, 31FIVE Corporate Rd,
+                    Prahlad Nagar, Ahmedabad, Gujarat 380015
+                  </p>
+
+                  <p className="mt-3">
+                    <span className="font-medium text-slate-300">
+                      Branch Office:
+                    </span>{" "}
+                    Krishna Market, Gupta Store Road In Front of
+                    Laxmi Atta Chakki, Subhashnagar, Clement Town,
+                    Dehradun (Uttarakhand) 248002
+                  </p>
+
+                </div>
+
               </div>
 
             </div>
 
           </div>
 
+
           {/* CTA */}
           <div>
 
-            <h3 className="text-xl font-semibold text-white">
+            <h3 className="text-lg font-semibold tracking-wide text-white">
               Ready to Invest?
             </h3>
 
-            <p className="mt-5 leading-7 text-slate-400">
+            <div className="mt-3 h-px w-10 bg-amber-400/70" />
+
+            <p className="mt-6 text-[15px] leading-7 text-slate-400">
               Schedule your consultation and discover premium investment
               opportunities in Dholera Smart City.
             </p>
 
             <Link
               href="/contact"
-              className="mt-8 inline-flex items-center gap-2 rounded-xl bg-slate-900 border border-amber-500/40 px-6 py-3 font-semibold text-amber-400 shadow-md transition duration-300 hover:border-amber-400 hover:bg-slate-800 hover:scale-105 hover:shadow-lg hover:shadow-amber-500/10"
+              className="group mt-8 inline-flex items-center gap-3 rounded-xl border border-amber-400/40 bg-amber-400/[0.04] px-6 py-3.5 text-sm font-semibold text-amber-400 shadow-lg shadow-black/20 transition-all duration-300 hover:-translate-y-1 hover:border-amber-400 hover:bg-amber-400/[0.08] hover:shadow-amber-500/10"
             >
               Book Now
+
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
             </Link>
 
           </div>
 
         </div>
 
+
         {/* Divider */}
-        <div className="my-12 h-px bg-white/10"></div>
+        <div className="my-14 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-        {/* Bottom */}
-        <div className="flex flex-col items-center justify-between gap-6 text-center text-sm text-slate-500 md:flex-row">
 
-          <p>
-            © {new Date().getFullYear()}Vision Dholera Estate. All Rights Reserved.
+        {/* Bottom Footer */}
+        <div className="flex flex-col items-center justify-between gap-6 text-center md:flex-row md:text-left">
 
+          <p className="text-xs tracking-wide text-slate-500">
+            © {new Date().getFullYear()} Vision Dholera Estate. All Rights Reserved.
           </p>
 
-          <p className="text-slate-400">
-            Investing Today • Building Tomorrow • Growing Together
+          <p className="text-xs tracking-[0.08em] text-slate-400">
+            Investing Today
+            <span className="mx-2 text-amber-400/60">•</span>
+            Building Tomorrow
+            <span className="mx-2 text-amber-400/60">•</span>
+            Growing Together
           </p>
 
           <a
             href="/#home"
-            className="flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 transition hover:border-amber-500 hover:text-amber-400"
+            className="group flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-xs font-medium text-slate-400 transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/50 hover:text-amber-400"
           >
-            <ArrowUp size={18} />
+            <ArrowUp
+              size={16}
+              className="transition-transform duration-300 group-hover:-translate-y-0.5"
+            />
             Back to Top
           </a>
 

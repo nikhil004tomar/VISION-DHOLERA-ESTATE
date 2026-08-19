@@ -3,7 +3,10 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import api from "@/lib/api";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
 interface GalleryImage {
   id: number;
@@ -14,7 +17,8 @@ interface GalleryImage {
 }
 
 const API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 export default function Gallery() {
   const [images, setImages] = useState<GalleryImage[]>([]);
@@ -30,18 +34,31 @@ export default function Gallery() {
       try {
         setLoading(true);
 
-        const res = await api.get("/api/gallery/public");
+        const res = await api.get(
+          "/api/gallery/public"
+        );
 
-        console.log("Gallery API response:", res.data);
+        console.log(
+          "Gallery API response:",
+          res.data
+        );
 
         if (Array.isArray(res.data)) {
           setImages(res.data);
         } else {
-          console.error("Invalid gallery response:", res.data);
+          console.error(
+            "Invalid gallery response:",
+            res.data
+          );
+
           setImages([]);
         }
       } catch (error) {
-        console.error("Gallery loading error:", error);
+        console.error(
+          "Gallery loading error:",
+          error
+        );
+
         setImages([]);
       } finally {
         setLoading(false);
@@ -50,6 +67,7 @@ export default function Gallery() {
 
     loadGallery();
   }, []);
+
 
   // ==========================================
   // KEEP CURRENT INDEX VALID
@@ -66,6 +84,7 @@ export default function Gallery() {
     }
   }, [images, current]);
 
+
   // ==========================================
   // AUTOMATIC SLIDER
   // ==========================================
@@ -75,7 +94,9 @@ export default function Gallery() {
 
     const timer = window.setInterval(() => {
       setCurrent((prev) =>
-        prev >= images.length - 1 ? 0 : prev + 1
+        prev >= images.length - 1
+          ? 0
+          : prev + 1
       );
     }, 5000);
 
@@ -84,25 +105,37 @@ export default function Gallery() {
     };
   }, [images.length]);
 
+
   // ==========================================
   // LOADING
   // ==========================================
 
   if (loading) {
     return (
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <div className="flex justify-center items-center">
-            <div className="w-10 h-10 border-4 border-gray-200 border-t-blue-600 rounded-full animate-spin" />
+      <section className="bg-white py-20">
+
+        <div className="mx-auto max-w-7xl px-6 text-center">
+
+          <div className="flex items-center justify-center">
+
+            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-amber-200 bg-white shadow-sm">
+
+              <div className="h-7 w-7 animate-spin rounded-full border-2 border-slate-200 border-t-amber-500" />
+
+            </div>
+
           </div>
 
-          <p className="mt-4 text-gray-500">
+          <p className="mt-5 text-sm font-medium tracking-wide text-slate-500">
             Loading Gallery...
           </p>
+
         </div>
+
       </section>
     );
   }
+
 
   // ==========================================
   // NO IMAGES
@@ -110,17 +143,24 @@ export default function Gallery() {
 
   if (images.length === 0) {
     return (
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <div className="rounded-3xl bg-gray-50 border border-gray-200 py-16">
-            <p className="text-gray-500 text-lg">
+      <section className="bg-gradient-to-b from-slate-50 to-white py-20">
+
+        <div className="mx-auto max-w-7xl px-6 text-center">
+
+          <div className="rounded-3xl border border-slate-200 bg-white py-16 shadow-sm">
+
+            <p className="text-lg text-slate-500">
               No Gallery Images
             </p>
+
           </div>
+
         </div>
+
       </section>
     );
   }
+
 
   // ==========================================
   // CURRENT IMAGE
@@ -128,25 +168,15 @@ export default function Gallery() {
 
   const currentImage = images[current];
 
-  /**
-   * Backend returns something like:
-   *
-   * /uploads/gallery/image.jpg
-   *
-   * or:
-   *
-   * /uploads/properties/image.jpg
-   *
-   * Convert it into:
-   *
-   * http://localhost:8000/uploads/...
-   */
+  const imageUrl =
+    currentImage.image.startsWith("http")
+      ? currentImage.image
+      : `${API_URL}${
+          currentImage.image.startsWith("/")
+            ? ""
+            : "/"
+        }${currentImage.image}`;
 
-  const imageUrl = currentImage.image.startsWith("http")
-    ? currentImage.image
-    : `${API_URL}${currentImage.image.startsWith("/") ? "" : "/"}${
-        currentImage.image
-      }`;
 
   // ==========================================
   // PREVIOUS
@@ -154,9 +184,12 @@ export default function Gallery() {
 
   const previousImage = () => {
     setCurrent((prev) =>
-      prev === 0 ? images.length - 1 : prev - 1
+      prev === 0
+        ? images.length - 1
+        : prev - 1
     );
   };
+
 
   // ==========================================
   // NEXT
@@ -164,207 +197,195 @@ export default function Gallery() {
 
   const nextImage = () => {
     setCurrent((prev) =>
-      prev === images.length - 1 ? 0 : prev + 1
+      prev === images.length - 1
+        ? 0
+        : prev + 1
     );
   };
+
 
   // ==========================================
   // RENDER
   // ==========================================
 
   return (
-    <section className="py-20 bg-gray-100">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-amber-50/10 py-20">
+
+      {/* Background Ambient Glows */}
+      <div className="pointer-events-none absolute -left-32 top-0 h-80 w-80 rounded-full bg-amber-200/20 blur-3xl" />
+
+      <div className="pointer-events-none absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-slate-200/40 blur-3xl" />
+
+
+      <div className="relative mx-auto max-w-7xl px-6">
+
 
         {/* HEADING */}
 
-        <div className="text-center mb-10">
-          <span className="inline-block px-5 py-2 rounded-full bg-blue-50 text-blue-700 font-semibold text-sm mb-4">
+        <div className="mx-auto mb-12 max-w-3xl text-center">
+
+          <span className="inline-flex items-center rounded-full border border-amber-300/80 bg-amber-50 px-5 py-2 text-sm font-semibold tracking-wide text-amber-700 shadow-sm">
             Our Gallery
           </span>
 
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+          <h2 className="mt-6 text-4xl font-extrabold leading-tight tracking-tight text-slate-900 md:text-5xl">
+
             Explore Our{" "}
-            <span className="text-blue-600">
+
+            <span className="relative inline-block text-amber-500">
+
               Projects
+
+              <span className="absolute -bottom-1 left-0 h-1 w-full rounded-full bg-amber-400/30" />
+
             </span>
+
           </h2>
 
-          <p className="text-gray-500 mt-4 max-w-2xl mx-auto">
+          <p className="mx-auto mt-6 max-w-2xl leading-7 text-slate-500">
             Take a look at our latest projects, developments
             and investment opportunities.
           </p>
+
         </div>
+
 
         {/* GALLERY */}
 
-        <div className="relative overflow-hidden rounded-3xl shadow-2xl bg-black">
+        <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-slate-950 p-1.5 shadow-2xl shadow-slate-300/40">
 
-          {/* IMAGE */}
+          <div className="relative overflow-hidden rounded-[1.7rem] bg-black">
 
-          <Image
-            key={currentImage.id}
-            src={imageUrl}
-            alt={
-              currentImage.title ||
-              "Vision Dholera Gallery"
-            }
-            width={1500}
-            height={900}
-            priority={current === 0}
-            unoptimized
-            className="w-full h-[350px] md:h-[500px] lg:h-[600px] object-cover"
-            onError={(event) => {
-              console.error(
-                "Gallery image failed:",
-                imageUrl
-              );
 
-              event.currentTarget.src =
-                "/placeholder-property.jpg";
-            }}
-          />
+            {/* IMAGE */}
 
-          {/* GRADIENT */}
+            <Image
+              key={currentImage.id}
+              src={imageUrl}
+              alt={
+                currentImage.title ||
+                "Vision Dholera Gallery"
+              }
+              width={1500}
+              height={900}
+              priority={current === 0}
+              unoptimized
+              className="h-[350px] w-full object-cover transition-transform duration-700 md:h-[500px] lg:h-[600px]"
+              onError={(event) => {
+                console.error(
+                  "Gallery image failed:",
+                  imageUrl
+                );
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+                event.currentTarget.src =
+                  "/placeholder-property.jpg";
+              }}
+            />
 
-          {/* PREVIOUS */}
 
-          {images.length > 1 && (
-            <button
-              type="button"
-              onClick={previousImage}
-              aria-label="Previous gallery image"
-              className="
-                absolute
-                left-4 md:left-6
-                top-1/2
-                -translate-y-1/2
-                w-12 h-12
-                md:w-14 md:h-14
-                flex
-                items-center
-                justify-center
-                rounded-full
-                bg-white/90
-                hover:bg-white
-                text-gray-900
-                shadow-xl
-                transition-all
-                duration-300
-                hover:scale-110
-              "
-            >
-              <ChevronLeft size={28} />
-            </button>
-          )}
+            {/* GRADIENT */}
 
-          {/* NEXT */}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/15 to-slate-950/10" />
 
-          {images.length > 1 && (
-            <button
-              type="button"
-              onClick={nextImage}
-              aria-label="Next gallery image"
-              className="
-                absolute
-                right-4 md:right-6
-                top-1/2
-                -translate-y-1/2
-                w-12 h-12
-                md:w-14 md:h-14
-                flex
-                items-center
-                justify-center
-                rounded-full
-                bg-white/90
-                hover:bg-white
-                text-gray-900
-                shadow-xl
-                transition-all
-                duration-300
-                hover:scale-110
-              "
-            >
-              <ChevronRight size={28} />
-            </button>
-          )}
 
-          {/* IMAGE INFORMATION */}
+            {/* PREVIOUS */}
 
-          <div
-            className="
-              absolute
-              left-0
-              right-0
-              bottom-0
-              p-6
-              md:p-10
-              text-white
-              pointer-events-none
-            "
-          >
-            <h3 className="text-2xl md:text-4xl font-bold">
-              {currentImage.title}
-            </h3>
-
-            {currentImage.description && (
-              <p className="mt-2 text-white/90 text-sm md:text-base max-w-2xl">
-                {currentImage.description}
-              </p>
+            {images.length > 1 && (
+              <button
+                type="button"
+                onClick={previousImage}
+                aria-label="Previous gallery image"
+                className="group absolute left-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/90 text-slate-900 shadow-xl backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-amber-400 hover:bg-white md:left-7 md:h-14 md:w-14"
+              >
+                <ChevronLeft
+                  size={27}
+                  className="transition-transform duration-300 group-hover:-translate-x-0.5"
+                />
+              </button>
             )}
+
+
+            {/* NEXT */}
+
+            {images.length > 1 && (
+              <button
+                type="button"
+                onClick={nextImage}
+                aria-label="Next gallery image"
+                className="group absolute right-4 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/90 text-slate-900 shadow-xl backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-amber-400 hover:bg-white md:right-7 md:h-14 md:w-14"
+              >
+                <ChevronRight
+                  size={27}
+                  className="transition-transform duration-300 group-hover:translate-x-0.5"
+                />
+              </button>
+            )}
+
+
+            {/* IMAGE INFORMATION */}
+
+            <div className="pointer-events-none absolute bottom-0 left-0 right-0 p-6 text-white md:p-10">
+
+              <div className="flex items-center gap-3">
+
+                <span className="h-px w-8 bg-amber-400" />
+
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-400">
+                  Vision Dholera Estate
+                </span>
+
+              </div>
+
+              <h3 className="mt-3 text-2xl font-bold tracking-tight md:text-4xl">
+                {currentImage.title}
+              </h3>
+
+              {currentImage.description && (
+                <p className="mt-2 max-w-2xl text-sm leading-6 text-white/80 md:text-base">
+                  {currentImage.description}
+                </p>
+              )}
+
+            </div>
+
+
+            {/* COUNTER */}
+
+            {images.length > 1 && (
+              <div className="absolute right-5 top-5 rounded-full border border-white/10 bg-slate-950/60 px-4 py-2 text-sm font-medium text-white shadow-lg backdrop-blur-md md:right-7 md:top-7">
+                {current + 1} / {images.length}
+              </div>
+            )}
+
           </div>
 
-          {/* COUNTER */}
-
-          {images.length > 1 && (
-            <div
-              className="
-                absolute
-                top-5
-                right-5
-                px-4
-                py-2
-                rounded-full
-                bg-black/60
-                backdrop-blur-md
-                text-white
-                text-sm
-                font-medium
-              "
-            >
-              {current + 1} / {images.length}
-            </div>
-          )}
         </div>
+
 
         {/* DOTS */}
 
         {images.length > 1 && (
-          <div className="flex justify-center items-center gap-2 mt-6">
+          <div className="mt-7 flex items-center justify-center gap-2">
+
             {images.map((image, index) => (
               <button
                 key={image.id}
                 type="button"
                 onClick={() => setCurrent(index)}
                 aria-label={`Go to image ${index + 1}`}
-                className={`
-                  h-2.5
-                  rounded-full
-                  transition-all
-                  duration-300
-                  ${
-                    current === index
-                      ? "w-8 bg-blue-600"
-                      : "w-2.5 bg-gray-300 hover:bg-gray-400"
-                  }
-                `}
+                className={`h-2.5 rounded-full transition-all duration-300 ${
+                  current === index
+                    ? "w-9 bg-amber-500 shadow-sm shadow-amber-400/40"
+                    : "w-2.5 bg-slate-300 hover:bg-amber-300"
+                }`}
               />
             ))}
+
           </div>
         )}
+
       </div>
+
     </section>
   );
 }

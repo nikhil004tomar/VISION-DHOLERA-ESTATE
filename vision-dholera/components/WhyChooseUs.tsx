@@ -104,9 +104,7 @@ export default function WhyChooseUs() {
               </p>
 
               {/* Bottom Link */}
-              <div className="mt-6 inline-flex items-center font-semibold text-amber-600 transition group-hover:translate-x-2">
-                Learn More →
-              </div>
+              
             </div>
           ))}
         </div>

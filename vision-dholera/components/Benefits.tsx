@@ -5,142 +5,118 @@ import {
   TrendingUp,
 } from "lucide-react";
 
-export default function Benefits() {
-  const benefits = [
-    {
-      icon: <Building2 size={36} />,
-      title: "Smart City Development",
-      description:
-        "India's first Greenfield Smart City designed with world-class infrastructure and sustainable urban planning.",
-    },
-    {
-      icon: <Plane size={36} />,
-      title: "International Airport",
-      description:
-        "The upcoming international airport will transform Dholera into a major business and logistics hub.",
-    },
-    {
-      icon: <MapPinned size={36} />,
-      title: "Strategic Location",
-      description:
-        "Excellent connectivity through expressways, freight corridors, metro, and industrial zones.",
-    },
-    {
-      icon: <TrendingUp size={36} />,
-      title: "High Investment Growth",
-      description:
-        "Early investment opportunities with significant appreciation potential and long-term returns.",
-    },
-  ];
+const benefits = [
+  {
+    icon: Building2,
+    title: "Smart City Development",
+    description:
+      "India's first Greenfield Smart City designed with world-class infrastructure and sustainable urban planning.",
+  },
+  {
+    icon: Plane,
+    title: "International Airport",
+    description:
+      "The upcoming international airport will transform Dholera into a major business and logistics hub.",
+  },
+  {
+    icon: MapPinned,
+    title: "Strategic Location",
+    description:
+      "Excellent connectivity through expressways, freight corridors, metro, and industrial zones.",
+  },
+  {
+    icon: TrendingUp,
+    title: "High Investment Growth",
+    description:
+      "Early investment opportunities with significant appreciation potential and long-term returns.",
+  },
+];
 
+const stats = [
+  { value: "920+", label: "Sq. Km Planned City" },
+  { value: "6 Lane", label: "Expressway Connectivity" },
+  { value: "24×7", label: "Smart Infrastructure" },
+  { value: "Future Ready", label: "Investment Destination" },
+];
+
+export default function Benefits() {
   return (
     <section
       id="benefits"
-      className="relative py-24 bg-gradient-to-b from-blue-50 via-white to-slate-50 overflow-hidden"
+      className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/80 to-amber-50/20 py-24"
     >
-      {/* Background Decoration */}
-      <div className="absolute -top-20 -left-20 h-80 w-80 rounded-full bg-blue-200/30 blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-cyan-200/30 blur-3xl"></div>
+      <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-[#06285F]/5 blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 bottom-10 h-80 w-80 rounded-full bg-[#D4A03A]/10 blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-6">
-
-        {/* Heading */}
-        <div className="text-center max-w-3xl mx-auto">
-
-          {/* Badge: Navy background with Gold text */}
-          <span className="inline-flex items-center rounded-full bg-slate-900 border border-amber-500/30 px-5 py-2 text-sm font-semibold text-amber-400 shadow-sm">
+      <div className="relative mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="inline-flex items-center rounded-full border border-[#D4A03A]/40 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#06285F] shadow-sm">
             Premium Investment Opportunity
           </span>
 
-          <h2 className="mt-6 text-4xl md:text-5xl font-extrabold text-slate-900">
+          <h2 className="mt-6 text-4xl font-extrabold tracking-tight text-[#06285F] md:text-5xl">
             Why Invest in
-            <span className="text-amber-500"> Dholera Smart City?</span>
+            <span className="text-[#D4A03A]"> Dholera Smart City?</span>
           </h2>
 
-          <p className="mt-6 text-lg text-slate-600 leading-8">
-            Dholera is India's most ambitious smart city project, offering
-            world-class infrastructure, government-backed development,
-            and exceptional long-term investment potential.
+          <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-[#D4A03A]" />
+
+          <p className="mt-6 text-lg leading-8 text-slate-600">
+            Dholera is India&apos;s most ambitious smart city project, offering
+            world-class infrastructure, government-backed development, and
+            exceptional long-term investment potential.
           </p>
-
         </div>
 
-        {/* Cards */}
-        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {benefits.map((item, index) => {
+            const Icon = item.icon;
 
-          {benefits.map((item) => (
-            <div
-              key={item.title}
-              className="group relative overflow-hidden rounded-3xl border border-slate-200/60 bg-white/80 backdrop-blur-md p-8 shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:border-amber-500/40"
-            >
-              {/* Top Accent Gradient: Gold to Amber */}
-              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600"></div>
+            return (
+              <article
+                key={item.title}
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white/90 p-8 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:border-[#D4A03A]/50 hover:shadow-md"
+              >
+                <div className="absolute inset-x-0 top-0 h-1 bg-[#D4A03A]/70 transition group-hover:bg-[#D4A03A]" />
 
-              {/* Icon Container: Dark Navy background with Gold Icon */}
-              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-900 text-amber-400 shadow-md transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110">
-                {item.icon}
-              </div>
+                <span className="text-xs font-semibold tracking-widest text-[#D4A03A]/80">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
 
-              {/* Title */}
-              <h3 className="mt-6 text-xl font-bold text-slate-900">
-                {item.title}
-              </h3>
+                <div className="mx-auto mt-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#D4A03A]/25 bg-amber-50 text-[#06285F] transition group-hover:border-[#D4A03A]/50 group-hover:bg-amber-100/80">
+                  <Icon size={26} strokeWidth={1.75} />
+                </div>
 
-              {/* Description */}
-              <p className="mt-4 leading-7 text-slate-600">
-                {item.description}
-              </p>
+                <h3 className="mt-5 text-lg font-bold text-[#06285F]">
+                  {item.title}
+                </h3>
 
-              {/* Learn More link in Gold */}
-              <div className="mt-6 flex items-center font-semibold text-amber-600 group-hover:text-amber-500 transition-all group-hover:translate-x-2">
-                Learn More →
-              </div>
+                <div className="mx-auto mt-3 h-px w-10 bg-[#D4A03A]/40" />
 
-            </div>
-          ))}
-
+                <p className="mt-4 flex-1 text-sm leading-7 text-slate-600">
+                  {item.description}
+                </p>
+              </article>
+            );
+          })}
         </div>
 
-        {/* Bottom Statistics Banner: Deep Navy with Gold & Off-White Details */}
-        <div className="mt-20 rounded-3xl bg-slate-900 border border-slate-800 p-10 text-white shadow-2xl relative overflow-hidden">
-          
-          {/* Subtle inner ambient gold glow */}
-          <div className="absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-amber-500/10 blur-2xl pointer-events-none"></div>
+        <div className="relative mt-20 overflow-hidden rounded-2xl border border-[#D4A03A]/30 bg-white p-8 shadow-sm md:p-10">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-[#D4A03A] to-transparent" />
 
-          <div className="relative grid gap-10 text-center md:grid-cols-4">
-
-            <div>
-              <h3 className="text-4xl font-extrabold text-amber-400">920+</h3>
-              <p className="mt-2 text-slate-300 font-medium">
-                Sq. Km Planned City
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-4xl font-extrabold text-amber-400">6 Lane</h3>
-              <p className="mt-2 text-slate-300 font-medium">
-                Expressway Connectivity
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-4xl font-extrabold text-amber-400">24×7</h3>
-              <p className="mt-2 text-slate-300 font-medium">
-                Smart Infrastructure
-              </p>
-            </div>
-
-            <div>
-              <h3 className="text-4xl font-extrabold text-amber-400">Future Ready</h3>
-              <p className="mt-2 text-slate-300 font-medium">
-                Investment Destination
-              </p>
-            </div>
-
+          <div className="grid gap-8 text-center sm:grid-cols-2 md:grid-cols-4 md:gap-0 md:divide-x md:divide-slate-200">
+            {stats.map((stat) => (
+              <div key={stat.label} className="px-4">
+                <h3 className="text-3xl font-extrabold text-[#D4A03A] md:text-4xl">
+                  {stat.value}
+                </h3>
+                <p className="mt-2 text-sm font-medium text-slate-600 md:text-base">
+                  {stat.label}
+                </p>
+              </div>
+            ))}
           </div>
-
         </div>
-
       </div>
     </section>
   );

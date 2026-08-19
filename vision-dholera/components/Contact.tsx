@@ -11,6 +11,28 @@ import {
 } from "lucide-react";
 import api from "@/lib/api";
 
+const contactDetails = [
+  {
+    icon: Phone,
+    title: "Call Us",
+    value: "+91 97738 92312",
+  },
+  {
+    icon: Mail,
+    title: "Email",
+    value: "visiondholeraestates@gmail.com",
+    breakAll: true,
+  },
+  {
+    icon: MapPin,
+    title: "Office",
+    value: "Vision Dholera Estate",
+  },
+];
+
+const inputClassName =
+  "w-full rounded-xl border border-slate-200 bg-white py-4 pl-12 pr-4 text-[#06285F] outline-none transition placeholder:text-slate-400 focus:border-[#D4A03A] focus:ring-4 focus:ring-[#D4A03A]/10";
+
 export default function Contact() {
   const [form, setForm] = useState({
     name: "",
@@ -21,6 +43,7 @@ export default function Contact() {
 
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState("");
+  const [statusType, setStatusType] = useState<"success" | "error" | "">("");
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -36,12 +59,14 @@ export default function Contact() {
 
     setLoading(true);
     setStatus("");
+    setStatusType("");
 
     try {
       const res = await api.post("/api/inquiries/public", form);
 
       if (res.data.success) {
-        setStatus("✅ Thank you! Our team will contact you shortly.");
+        setStatus("Thank you! Our team will contact you shortly.");
+        setStatusType("success");
 
         setForm({
           name: "",
@@ -51,18 +76,19 @@ export default function Contact() {
         });
       } else {
         setStatus(
-          res.data.detail ||
-            "❌ Failed to submit inquiry. Please try again."
+          res.data.detail || "Failed to submit inquiry. Please try again."
         );
+        setStatusType("error");
       }
     } catch (error: any) {
       console.error("Contact form error:", error);
 
       if (error.response?.data?.detail) {
-        setStatus(`❌ ${error.response.data.detail}`);
+        setStatus(error.response.data.detail);
       } else {
-        setStatus("❌ Failed to submit inquiry. Please try again.");
+        setStatus("Failed to submit inquiry. Please try again.");
       }
+      setStatusType("error");
     } finally {
       setLoading(false);
     }
@@ -71,23 +97,23 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden bg-gradient-to-b from-slate-50 via-white to-blue-50 py-24"
+      className="relative overflow-hidden bg-gradient-to-b from-amber-50/20 via-white to-slate-50 py-24"
     >
-      {/* Decorative Background */}
-      <div className="absolute left-0 top-0 h-72 w-72 rounded-full bg-blue-200/30 blur-3xl" />
-      <div className="absolute bottom-0 right-0 h-96 w-96 rounded-full bg-cyan-200/30 blur-3xl" />
+      <div className="pointer-events-none absolute -left-24 top-0 h-72 w-72 rounded-full bg-[#D4A03A]/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-[#06285F]/5 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-6">
-        {/* Heading */}
         <div className="mx-auto max-w-3xl text-center">
-          <span className="inline-flex rounded-full border border-amber-500/30 bg-slate-900 px-5 py-2 text-sm font-semibold text-amber-400 shadow-sm">
-            Let's Connect
+          <span className="inline-flex items-center rounded-full border border-[#D4A03A]/40 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#06285F] shadow-sm">
+            Let&apos;s Connect
           </span>
 
-          <h2 className="mt-5 text-4xl font-extrabold text-slate-900 md:text-5xl">
+          <h2 className="mt-6 text-4xl font-extrabold tracking-tight text-[#06285F] md:text-5xl">
             Book Your
-            <span className="text-amber-500"> Site Visit</span>
+            <span className="text-[#D4A03A]"> Site Visit</span>
           </h2>
+
+          <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-[#D4A03A]" />
 
           <p className="mt-6 text-lg leading-8 text-slate-600">
             Interested in investing in Dholera Smart City? Fill out the form
@@ -96,163 +122,147 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="mt-16 grid gap-12 lg:grid-cols-2">
-          {/* Contact Info */}
+        <div className="mt-16 grid gap-10 lg:grid-cols-2 lg:gap-12">
           <div>
-            <h3 className="text-3xl font-bold text-slate-900">
-              Get in Touch
-            </h3>
+            <h3 className="text-3xl font-bold text-[#06285F]">Get in Touch</h3>
 
-            <p className="mt-4 leading-8 text-slate-600">
+            <div className="mt-3 h-1 w-12 rounded-full bg-[#D4A03A]" />
+
+            <p className="mt-5 leading-8 text-slate-600">
               Our experienced advisors are ready to help you find the perfect
               residential or commercial investment in Dholera Smart City.
             </p>
 
-            <div className="mt-10 space-y-6">
-              {/* Phone */}
-              <div className="flex items-center gap-5 rounded-2xl border border-slate-100 bg-white p-6 shadow-lg transition-all duration-300 hover:border-amber-500/30 hover:shadow-xl">
-                <div className="rounded-xl bg-slate-900 p-4 text-amber-400 shadow-md">
-                  <Phone />
-                </div>
+            <div className="mt-10 space-y-5">
+              {contactDetails.map((item) => {
+                const Icon = item.icon;
 
-                <div>
-                  <h4 className="font-semibold text-slate-900">
-                    Call Us
-                  </h4>
-                  <p className="text-slate-600">+91 97738 92312</p>
-                </div>
-              </div>
+                return (
+                  <div
+                    key={item.title}
+                    className="group relative flex items-center gap-5 overflow-hidden rounded-2xl border border-slate-200/80 bg-white/90 p-6 shadow-sm transition duration-300 hover:border-[#D4A03A]/50 hover:shadow-md"
+                  >
+                    <div className="absolute inset-y-0 left-0 w-1 bg-[#D4A03A]/70 transition group-hover:bg-[#D4A03A]" />
 
-              {/* Email */}
-              <div className="flex items-center gap-5 rounded-2xl border border-slate-100 bg-white p-6 shadow-lg transition-all duration-300 hover:border-amber-500/30 hover:shadow-xl">
-                <div className="rounded-xl bg-slate-900 p-4 text-amber-400 shadow-md">
-                  <Mail />
-                </div>
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[#D4A03A]/25 bg-amber-50 text-[#06285F]">
+                      <Icon size={22} strokeWidth={1.75} />
+                    </div>
 
-                <div>
-                  <h4 className="font-semibold text-slate-900">
-                    Email
-                  </h4>
-                  <p className="break-all text-slate-600">
-                    visiondholeraestates@gmail.com
-                  </p>
-                </div>
-              </div>
-
-              {/* Office */}
-              <div className="flex items-center gap-5 rounded-2xl border border-slate-100 bg-white p-6 shadow-lg transition-all duration-300 hover:border-amber-500/30 hover:shadow-xl">
-                <div className="rounded-xl bg-slate-900 p-4 text-amber-400 shadow-md">
-                  <MapPin />
-                </div>
-
-                <div>
-                  <h4 className="font-semibold text-slate-900">
-                    Office
-                  </h4>
-                  <p className="text-slate-600">
-                    Vision Dholera Estate
-                  </p>
-                </div>
-              </div>
+                    <div>
+                      <h4 className="font-semibold text-[#06285F]">
+                        {item.title}
+                      </h4>
+                      <p
+                        className={`text-slate-600 ${item.breakAll ? "break-all" : ""}`}
+                      >
+                        {item.value}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="rounded-3xl border border-slate-200/80 bg-white p-8 shadow-2xl">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name */}
+          <div className="relative overflow-hidden rounded-2xl border border-[#D4A03A]/30 bg-white p-8 shadow-sm md:p-10">
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-[#D4A03A] to-transparent" />
+
+            <h3 className="text-2xl font-bold text-[#06285F]">
+              Request a Consultation
+            </h3>
+            <p className="mt-2 text-sm text-slate-600">
+              Share your details and we will get back to you promptly.
+            </p>
+
+            <form onSubmit={handleSubmit} className="mt-8 space-y-5">
               <div className="relative">
                 <User
                   className="absolute left-4 top-4 text-slate-400"
                   size={20}
                 />
-
                 <input
                   type="text"
                   name="name"
                   placeholder="Full Name"
                   value={form.name}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-slate-300 py-4 pl-12 pr-4 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10"
+                  className={inputClassName}
                   required
                 />
               </div>
 
-              {/* Email */}
               <div className="relative">
                 <Mail
                   className="absolute left-4 top-4 text-slate-400"
                   size={20}
                 />
-
                 <input
                   type="email"
                   name="email"
                   placeholder="Email Address"
                   value={form.email}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-slate-300 py-4 pl-12 pr-4 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10"
+                  className={inputClassName}
                   required
                 />
               </div>
 
-              {/* Phone */}
               <div className="relative">
                 <Phone
                   className="absolute left-4 top-4 text-slate-400"
                   size={20}
                 />
-
                 <input
                   type="tel"
                   name="phone"
                   placeholder="Phone Number"
                   value={form.phone}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-slate-300 py-4 pl-12 pr-4 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10"
+                  className={inputClassName}
                   required
                 />
               </div>
 
-              {/* Message */}
               <div className="relative">
                 <MessageSquare
                   className="absolute left-4 top-4 text-slate-400"
                   size={20}
                 />
-
                 <textarea
                   rows={5}
                   name="message"
                   placeholder="Tell us about your investment requirements..."
                   value={form.message}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-slate-300 py-4 pl-12 pr-4 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10"
+                  className={inputClassName}
                   required
                 />
               </div>
 
-              {/* Submit Button */}
               <button
                 type="submit"
                 disabled={loading}
-                className="flex w-full items-center justify-center gap-3 rounded-xl border border-amber-500/30 bg-slate-900 py-4 text-lg font-semibold text-amber-400 shadow-lg transition duration-300 hover:scale-[1.01] hover:border-amber-500 hover:bg-slate-800 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70"
+                className="flex w-full items-center justify-center gap-3 rounded-full bg-[#06285F] py-4 text-base font-semibold text-white shadow-md transition hover:bg-[#041c44] disabled:cursor-not-allowed disabled:opacity-70"
               >
-                <Send size={20} className="text-amber-400" />
-
+                <Send size={18} />
                 {loading ? "Sending..." : "Book Now"}
               </button>
 
-              {/* Status */}
               {status && (
-                <p className="text-center font-medium text-slate-800">
+                <p
+                  className={`rounded-xl px-4 py-3 text-center text-sm font-medium ${
+                    statusType === "success"
+                      ? "border border-emerald-200 bg-emerald-50 text-emerald-800"
+                      : "border border-red-200 bg-red-50 text-red-800"
+                  }`}
+                >
                   {status}
                 </p>
               )}
 
               <p className="text-center text-sm text-slate-500">
-                🔒 Your information is secure and will never be shared with
-                third parties.
+                Your information is secure and will never be shared with third
+                parties.
               </p>
             </form>
           </div>
