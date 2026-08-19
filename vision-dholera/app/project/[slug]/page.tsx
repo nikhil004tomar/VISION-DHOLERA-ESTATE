@@ -62,8 +62,8 @@ export default function PropertyDetailsPage() {
     typeof params.slug === "string"
       ? params.slug
       : Array.isArray(params.slug)
-      ? params.slug[0]
-      : "";
+        ? params.slug[0]
+        : "";
 
   const [property, setProperty] =
     useState<Property | null>(null);
@@ -106,7 +106,7 @@ export default function PropertyDetailsPage() {
 
         setError(
           error?.response?.data?.detail ||
-            "Property not found."
+          "Property not found."
         );
       } finally {
         setLoading(false);
@@ -123,7 +123,7 @@ export default function PropertyDetailsPage() {
 
   if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-slate-50 pt-20">
+      <main className="flex min-h-screen items-center justify-center bg-slate-50 pt-40">
 
         <div className="text-center">
 
@@ -445,11 +445,11 @@ export default function PropertyDetailsPage() {
                 <div className="p-8">
 
                   <p className="text-sm font-medium uppercase tracking-wide text-slate-400">
-                    Starting Price
+                    Starting Price / SQYD
                   </p>
 
                   <h2 className="mt-2 break-words text-4xl font-extrabold tracking-tight text-amber-600">
-                    {property.price}
+                    ₹{property.price}
                   </h2>
 
 
@@ -504,11 +504,10 @@ export default function PropertyDetailsPage() {
                         </p>
 
                         <p
-                          className={`mt-1 font-semibold ${
-                            property.status
+                          className={`mt-1 font-semibold ${property.status
                               ? "text-green-600"
                               : "text-red-500"
-                          }`}
+                            }`}
                         >
                           {property.status
                             ? "Available"
