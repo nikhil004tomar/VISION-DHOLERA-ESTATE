@@ -444,7 +444,7 @@ export default function PropertyDetailsPage() {
 
                 <div className="p-8">
 
-                  <p className="text-sm font-medium uppercase tracking-wide text-slate-400">
+                  <p className="text-sm font-medium uppercase tracking-wide text-black font-bold ">
                     Starting Price Per SQYD
                   </p>
 
