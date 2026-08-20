@@ -536,7 +536,7 @@ export default function PropertyDetailsPage() {
 
                   {/* Back */}
                   <Link
-                    href="/project"
+                    href="https://drive.google.com/drive/folders/1TTSWnsZE4DD6Mm36UPu3OF1GwMFB_MCN?usp=drive_link"
                     className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 py-4 font-semibold text-slate-700 transition-all duration-300 hover:border-amber-400 hover:bg-amber-50/40 hover:text-amber-600"
                   >
                     <ArrowLeft size={18} />
