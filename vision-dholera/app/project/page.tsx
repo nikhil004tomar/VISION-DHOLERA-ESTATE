@@ -269,11 +269,11 @@ export default function Project() {
                     <div className="mt-6 border-t border-slate-100 pt-5">
 
                       <div className="text-xs font-medium uppercase tracking-wide text-slate-400">
-                        Starting Price
+                        Starting Price Per SQYD
                       </div>
 
                       <div className="mt-1 text-2xl font-extrabold tracking-tight text-amber-600">
-                        {project.price}
+                        ₹{project.price}
                       </div>
 
                     </div>
