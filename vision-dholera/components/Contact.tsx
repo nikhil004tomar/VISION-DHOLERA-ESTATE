@@ -110,7 +110,7 @@ export default function Contact() {
 
           <h2 className="mt-6 text-4xl font-extrabold tracking-tight text-[#06285F] md:text-5xl">
             Book Your
-            <span className="text-[#D4A03A]"> Site Visit</span>
+            <span className="text-[#D4A03A]"> Free Site Visit</span>
           </h2>
 
           <div className="mx-auto mt-5 h-1 w-16 rounded-full bg-[#D4A03A]" />

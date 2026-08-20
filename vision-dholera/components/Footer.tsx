@@ -166,29 +166,10 @@ export default function Footer() {
 
                   <p className="mt-2">
                     <span className="font-medium text-slate-300">
-                      Registered Office:
+                       Address:
                     </span>{" "}
-                    1120, Galaxy Daimond Plaza, Sector - 4,
-                    Haibatpur, Greater Noida (W), U.P. 201016
+                   OFFICE NO-1909 18TH FLOOR GALAXY BLUE SAPPHIRE PLAZA SECTOR-4 GREATER NOIDA WEST
                   </p>
-
-                  <p className="mt-3">
-                    <span className="font-medium text-slate-300">
-                      Branch Office:
-                    </span>{" "}
-                    810, 8th Floor, 31FIVE Corporate Rd,
-                    Prahlad Nagar, Ahmedabad, Gujarat 380015
-                  </p>
-
-                  <p className="mt-3">
-                    <span className="font-medium text-slate-300">
-                      Branch Office:
-                    </span>{" "}
-                    Krishna Market, Gupta Store Road In Front of
-                    Laxmi Atta Chakki, Subhashnagar, Clement Town,
-                    Dehradun (Uttarakhand) 248002
-                  </p>
-
                 </div>
 
               </div>

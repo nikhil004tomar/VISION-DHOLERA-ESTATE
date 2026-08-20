@@ -79,7 +79,7 @@ export default function Contact() {
           </span>
 
           <h2 className="mt-6 text-4xl font-extrabold tracking-tight text-blue-950 md:text-5xl">
-            Book Your <span className="text-amber-500">Site-Now</span>
+            Book Your <span className="text-amber-500">Free Site-Visit</span>
           </h2>
 
           <p className="mt-6 text-lg leading-8 text-slate-700">
@@ -103,7 +103,7 @@ export default function Contact() {
                 investment opportunity in Dholera Smart City.
               </p>
             </div>
-                        {/* Contact Cards */}
+            {/* Contact Cards */}
 
             <div className="space-y-6">
 
@@ -158,11 +158,7 @@ export default function Contact() {
                   </h4>
 
                   <p className="mt-1 text-lg font-medium text-slate-900">
-                    Registered Office: 1120, Galaxy Daimond Plaza, Sector - 4, Haibatpur, Greater Noida (W), U.P. 201016
-
-Branch Office: 810, 8th Floor, 31FIVE Corporate Rd, Prahlad Nagar, Ahmedabad, Gujarat 380015
-
-Branch Office: Krishna Market, Gupta Store Road In Front of Laxmi Atta Chakki, Subhashnagar, Clement Town, Dehradun (Uttarakhand) 248002
+                    Address: OFFICE NO-1909 18TH FLOOR GALAXY BLUE SAPPHIRE PLAZA SECTOR-4 GREATER NOIDA WEST
                   </p>
                 </div>
 
@@ -264,7 +260,7 @@ Branch Office: Krishna Market, Gupta Store Road In Front of Laxmi Atta Chakki, S
                 />
 
               </div>
-                            {/* Submit Button */}
+              {/* Submit Button */}
 
               <button
                 type="submit"
@@ -280,11 +276,10 @@ Branch Office: Krishna Market, Gupta Store Road In Front of Laxmi Atta Chakki, S
 
               {status && (
                 <div
-                  className={`rounded-xl p-4 text-center font-medium ${
-                    status.startsWith("✅")
+                  className={`rounded-xl p-4 text-center font-medium ${status.startsWith("✅")
                       ? "bg-green-50 text-green-700 border border-green-200"
                       : "bg-red-50 text-red-700 border border-red-200"
-                  }`}
+                    }`}
                 >
                   {status}
                 </div>

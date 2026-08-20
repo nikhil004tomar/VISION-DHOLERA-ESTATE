@@ -476,9 +476,16 @@ export default function PropertyDetailsPage() {
                           Location
                         </p>
 
-                        <p className="mt-1 font-semibold leading-6 text-slate-900">
+                        <a
+                          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                            property.location
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-1 block font-semibold leading-6 text-slate-900 transition-colors hover:text-amber-600 hover:underline"
+                        >
                           {property.location}
-                        </p>
+                        </a>
 
                       </div>
 
@@ -505,8 +512,8 @@ export default function PropertyDetailsPage() {
 
                         <p
                           className={`mt-1 font-semibold ${property.status
-                              ? "text-green-600"
-                              : "text-red-500"
+                            ? "text-green-600"
+                            : "text-red-500"
                             }`}
                         >
                           {property.status
