@@ -79,7 +79,7 @@ export default function Contact() {
           </span>
 
           <h2 className="mt-6 text-4xl font-extrabold tracking-tight text-blue-950 md:text-5xl">
-            Book Your <span className="text-amber-500">Site Visit</span>
+            Book Your <span className="text-amber-500">Site-Now</span>
           </h2>
 
           <p className="mt-6 text-lg leading-8 text-slate-700">
@@ -158,7 +158,11 @@ export default function Contact() {
                   </h4>
 
                   <p className="mt-1 text-lg font-medium text-slate-900">
-                    Vision Dholera Estate
+                    Registered Office: 1120, Galaxy Daimond Plaza, Sector - 4, Haibatpur, Greater Noida (W), U.P. 201016
+
+Branch Office: 810, 8th Floor, 31FIVE Corporate Rd, Prahlad Nagar, Ahmedabad, Gujarat 380015
+
+Branch Office: Krishna Market, Gupta Store Road In Front of Laxmi Atta Chakki, Subhashnagar, Clement Town, Dehradun (Uttarakhand) 248002
                   </p>
                 </div>
 
