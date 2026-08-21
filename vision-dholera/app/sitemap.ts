@@ -47,30 +47,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     );
 
     if (!response.ok) {
-      console.error(
-        "Sitemap API error:",
-        response.status
-      );
-
+      console.error("Sitemap API error:", response.status);
       return staticPages;
     }
 
-    const properties: Property[] =
-      await response.json();
+    const properties: Property[] = await response.json();
 
-    const projectPages: MetadataRoute.Sitemap =
-      properties
-        .filter((property) => property.slug)
-        .map((property) => ({
-          url: `${BASE_URL}/project/${encodeURIComponent(
-            property.slug
-          )}`,
-          lastModified: property.created_at
-            ? new Date(property.created_at)
-            : new Date(),
-          changeFrequency: "weekly",
-          priority: 0.8,
-        }));
+    const projectPages: MetadataRoute.Sitemap = properties
+      .filter((property) => property.slug)
+      .map((property) => ({
+        url: `${BASE_URL}/project/${encodeURIComponent(
+          property.slug
+        )}`,
+        lastModified: property.created_at
+          ? new Date(property.created_at)
+          : new Date(),
+        changeFrequency: "weekly",
+        priority: 0.8,
+      }));
 
     return [
       ...staticPages,
